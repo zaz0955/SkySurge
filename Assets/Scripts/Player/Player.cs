@@ -75,4 +75,23 @@ public class Player : MonoBehaviour, IHitTarget
         GameManager.I.End();
         gameObject.SetActive(false);
     }
+    int ExpToNextLevel()
+    {
+        return 5 + (lv - 1) * 5;
+    }
+    public void LevelUp()
+    {
+        lv++;
+        GameManager.I.OnPlayerLevelUp();
+    }
+    public void AddExp(int value)
+    {
+        exp += value;
+        while (exp >= ExpToNextLevel())
+        {
+            exp -= ExpToNextLevel();
+            LevelUp();
+        }
+        GameManager.I.ui.UpdateHUD(hp, lv, exp, GameManager.I.waveMgr.WaveIndex, GameManager.I.score);
+    }
 }

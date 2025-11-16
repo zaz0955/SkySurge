@@ -6,15 +6,14 @@ public enum Rarity { Common, Rare, Epic }
 public class UpgradeCard : ScriptableObject
 {
     public string id;
-    public Rarity rarity;
-    public UpgradeEffect effect;
-}
+    public string displayName;
+    [TextArea] public string description;
 
-[System.Serializable]
-public class UpgradeEffect
-{
-    public int addHP;
+    public Rarity rarity;
+
+    // เอฟเฟกต์
+    public int addMaxHp;
     public int addDamage;
     public float addMoveSpeed;
-    public float addFireRateInverse; // ค่านี้ >0 ทำให้ยิงถี่ขึ้น (ลด fireRate)
+    public float fireRateMultiplier = 1f;  // <1 = ยิงเร็วขึ้น
 }

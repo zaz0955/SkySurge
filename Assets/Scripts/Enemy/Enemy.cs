@@ -48,7 +48,7 @@ public class Enemy : MonoBehaviour, IHitTarget
     public virtual void OnDeath()
     {
         // ให้ EXP
-        GameManager.I.player.exp += rewardExp;
+        GameManager.I.player.AddExp(rewardExp);
         // ดรอปของ
         if (spawner) spawner.RollDrop(transform.position);
         Destroy(gameObject);
